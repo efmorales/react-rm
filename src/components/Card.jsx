@@ -1,4 +1,4 @@
-// The Card component will display the data passed down from the Content component. The Card component will have the following props:
+// The Card component will display the data passed down from the Content component. If the field is empty, don't show the corresponding 'p' tag at all. The Card component will have the following props:
 //   id: number
 //   name: string
 //   status: string
@@ -6,30 +6,24 @@
 //   type: string
 //   image: string
 //   gender: string
-// The Card component will have the following HTML structure:
-// <div className="card">
-//   <div className="card__image">
-//     <img src="https://picsum.photos/200/300" alt="random" />
-//   </div>
-//   <div className="card__content">
-//     <h2 className="card__title">Card Title</h2>
-//     <p className="card__text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quod.</p>
-//   </div>
-// </div>
 
 export default function Card ({ character }) {
+
     return (
         <div className="card">
-            <div className="card__image">
-                <img src={character.image} alt={character.name} />
+            <img className="card--image" src={character.image} alt={character.name} />
+            <div className="card--content">
+                <h2 className="card--title">{character.name}</h2>
+                <p className="card--text"><strong>Status:</strong> {character.status}</p>
+                <p className="card--text"><strong>Species:</strong> {character.species}</p>
+                {character.type && <p className="card--text"><strong>Type:</strong> {character.type}</p>}
+                {character.gender && <p className="card--text"><strong>Gender:</strong> {character.gender}</p>}
             </div>
-            <div className="card__content">
-                <h2 className="card__title">{character.name}</h2>
-                <p className="card__text"> Species: {character.species}</p>
-                <p className="card__text"> Status: {character.status}</p>
-                <p className="card__text"> {character.type}</p>
-                <p className="card__text"> {character.gender}</p>
+            <div className="card--footer">
+                <p className="card--footer-text"><strong>Episodes:</strong> {character.episode.length}</p>
             </div>
+
         </div>
     )
 }
+

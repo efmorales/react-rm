@@ -6,29 +6,30 @@
 //   type: string
 //   image: string
 
-
 import React, { useState, useEffect } from 'react'
 import Card from './Card'
+import Pagination from './Pagination'
 
 export default function Content () {
-
-    const [characters, setCharacters] = useState([])
-
-    useEffect(() => {
-        fetch('https://rickandmortyapi.com/api/character')
-        .then(res => res.json())
-        .then(data => {
-            setCharacters(data.results)
-        })
-    }, [])
-
-    return (
-        <div className="content">
-            {characters.map(character => {
-                return <Card key={character.id} character={character} />
-            })}
-        </div>
-    )
-}
+    
+        const [characters, setCharacters] = useState([])
+    
+        useEffect(() => {
+            fetch('https://rickandmortyapi.com/api/character')
+            .then(res => res.json())
+            .then(data => {
+                setCharacters(data.results)
+            })
+        }, [])
+    
+        return (
+            <div className="content">
+                <Pagination characters={characters} setCharacters={setCharacters} />
+                {characters.map(character => {
+                    return <Card key={character.id} character={character} />
+                })}
+            </div>
+        )
+    }
 
 
