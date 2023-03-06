@@ -24,7 +24,7 @@ export default function Pagination ({ characters, setCharacters }) {
         <div className="pagination">
             <button className="pagination--button" onClick={() => setPage(page - 1)} disabled={page === 1}>Previous</button>
             <p className="pagination--page">Page {page}</p>
-            <button className="pagination--button" onClick={() => setPage(page + 1)} disabled={page === 34}>Next</button>
+            <button className="pagination--button" onClick={() => setPage(page + 1)} disabled={page === 42}>Next</button>
         </div>
     )
 }
