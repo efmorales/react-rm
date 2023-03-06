@@ -5,6 +5,7 @@
 //   species: string
 //   type: string
 //   image: string
+//   gender: string
 // The Card component will have the following HTML structure:
 // <div className="card">
 //   <div className="card__image">
@@ -27,6 +28,7 @@ export default function Card ({ character }) {
                 <p className="card__text"> Species: {character.species}</p>
                 <p className="card__text"> Status: {character.status}</p>
                 <p className="card__text"> {character.type}</p>
+                <p className="card__text"> {character.gender}</p>
             </div>
         </div>
     )
