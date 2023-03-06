@@ -2,19 +2,23 @@
 //   characters: array
 //   setCharacters: function
 
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useCallback } from 'react'
 
 export default function Pagination ({ characters, setCharacters }) {
 
-    const [page, setPage] = useState(1)
+    const [page, setPage] = useState(1);
 
+    // wrap setCharacters in useCallback and pass it as a dependency
+    const getCharacters = useCallback(() => {
+      fetch(`https://rickandmortyapi.com/api/character/?page=${page}`)
+        .then((response) => response.json())
+        .then((data) => setCharacters(data.results));
+    }, [setCharacters, page]);
+  
     useEffect(() => {
-        fetch(`https://rickandmortyapi.com/api/character/?page=${page}`)
-        .then(res => res.json())
-        .then(data => {
-            setCharacters(data.results)
-        })
-    }, [page])
+      getCharacters();
+    }, [getCharacters]); // pass getCharacters as a dependency
+  
 
     return (
         <div className="pagination">
